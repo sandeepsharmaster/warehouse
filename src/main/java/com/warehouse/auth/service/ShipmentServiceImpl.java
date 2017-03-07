@@ -1,19 +1,22 @@
 package com.warehouse.auth.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.warehouse.auth.model.InvardShipment;
 import com.warehouse.auth.model.User;
-import com.warehouse.shipment.model.InvardShipment;
+import com.warehouse.auth.repository.ShipmentRepository;
 
 @Service
 public class ShipmentServiceImpl implements ShipmentService {
-   
+	
+	@Autowired
+    private ShipmentRepository shipmentRepository;
 
     @Override
-    public void save(InvardShipment shipmentForm) {
-       /* user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setRoles(new HashSet<>(roleRepository.findAll()));
-        userRepository.save(user);*/
+    public void save(InvardShipment shipmentForm) {     
+    	
+    	shipmentRepository.save(shipmentForm);
     }
 
     @Override

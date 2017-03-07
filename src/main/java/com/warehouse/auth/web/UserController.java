@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.warehouse.auth.model.InvardShipment;
 import com.warehouse.auth.model.User;
 import com.warehouse.auth.service.SecurityService;
 import com.warehouse.auth.service.ShipmentService;
 import com.warehouse.auth.service.UserService;
 import com.warehouse.auth.validator.UserValidator;
-import com.warehouse.shipment.model.InvardShipment;
 
 @Controller
 public class UserController {

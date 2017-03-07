@@ -31,7 +31,7 @@
 <div class="container">
    
     <form:form method="POST" modelAttribute="shipmentForm" class="form-signin">
-        <h1 class="form-signin-heading">Enter Shipment Details</h1>
+        <h1 class="form-signin-heading">Enter Inward Shipment Details</h1>
         <spring:bind path="productId">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="text" path="productId" class="form-control" placeholder="ProductId"  autofocus="true"></form:input>

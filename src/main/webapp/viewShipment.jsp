@@ -31,12 +31,25 @@
 <div class="container">
    
    
-
-       
-
+<h2>Show Shipment Details</h2>
+<table width="50%">
+	<tr>
+		<th>Name</th>
+		<th>Lastname</th>
+		<th>Email</th>
+		<th>Phone</th>
+	</tr>
+	<%-- <c:forEach items="${contactForm.contacts}" var="contact" varStatus="status">
+		<tr>
+			<td>${contact.firstname}</td>
+			<td>${contact.lastname}</td>
+			<td>${contact.email}</td>
+			<td>${contact.phone}</td>
+		</tr>
+	</c:forEach> --%>
+</table>	
+<br/>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
-    
-
 </div>
 <!-- /container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

@@ -9,10 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.warehouse.auth.model.User;
-import com.warehouse.auth.service.HelloWorldService;
 import com.warehouse.auth.service.SecurityService;
+import com.warehouse.auth.service.ShipmentService;
 import com.warehouse.auth.service.UserService;
 import com.warehouse.auth.validator.UserValidator;
+import com.warehouse.shipment.model.InvardShipment;
 
 @Controller
 public class UserController {
@@ -26,15 +27,48 @@ public class UserController {
     private UserValidator userValidator;
     
     @Autowired
-    private HelloWorldService helloService;
+    private ShipmentService shipmentService;
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
         
-        System.out.println(helloService.getHelloMessage());
+       // System.out.println(helloService.getHelloMessage());
+        
+        System.out.println("Method Called : registration");
 
         return "registration";
+    }
+    
+    @RequestMapping(value = "/shipment", method = RequestMethod.GET)
+    public String shipment(Model model) {
+        model.addAttribute("shipmentForm", new InvardShipment());
+        
+       // System.out.println(helloService.getHelloMessage());
+        
+        System.out.println("Method Called : shipment");
+
+        return "shipment";
+    }
+    
+    @RequestMapping(value = "/shipment", method = RequestMethod.POST)
+    public String saveShipment(@ModelAttribute("shipmentForm") InvardShipment shipmentForm, BindingResult bindingResult, Model model) {
+        model.addAttribute("shipmentForm", new InvardShipment());
+        
+        if (bindingResult.hasErrors()) {
+            return "shipment";
+        }
+        
+       // System.out.println(helloService.getHelloMessage());
+        
+        System.out.println("Method Called : shipment_1");
+        System.out.println("Method Called : shipmentService" + shipmentService);
+        
+        shipmentService.save(shipmentForm);
+        
+        System.out.println("Method Called : shipment_12");
+
+        return "viewShipment";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
@@ -46,6 +80,9 @@ public class UserController {
         }
 
         userService.save(userForm);
+        
+        System.out.println("Method Called : registration_1");
+
 
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
 
@@ -60,11 +97,14 @@ public class UserController {
         if (logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
 
+        System.out.println("Method Called : login");
         return "login";
     }
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model) {
+    	
+    	 System.out.println("Method Called : welcome");
         return "welcome";
     }
 }

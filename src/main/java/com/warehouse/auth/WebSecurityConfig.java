@@ -1,5 +1,6 @@
 package com.warehouse.auth;
 
+import java.io.IOException;
 import java.util.Properties;
 
 import javax.persistence.EntityManagerFactory;
@@ -23,13 +24,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = {"com.warehouse.auth.repository"})
 @EnableWebSecurity
 @EnableAutoConfiguration
-@ComponentScan
+@ComponentScan(basePackages = "com.warehouse")
 @ImportResource("classpath*:*spring-config.xml")
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
@@ -37,6 +39,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Autowired
     private DataSource dataSource;
+    
+    @Bean(name="multipartResolver") 
+    public CommonsMultipartResolver getResolver() throws IOException{
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+         
+        //Set the maximum allowed size (in bytes) for each individual file.
+        resolver.setMaxUploadSizePerFile(5242880);//5MB
+         
+        //You may also set other available properties.
+         
+        return resolver;
+    }
     
     @Bean
     JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {

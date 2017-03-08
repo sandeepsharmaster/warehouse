@@ -35,7 +35,9 @@
 
     </c:if>
     
+     <h4 class="text-center"><a href="${contextPath}/shipment">Enter Master Data</a></h4>
     <h4 class="text-center"><a href="${contextPath}/shipment">Enter Shipment Details</a></h4>
+    <h4 class="text-center"><a href="${contextPath}/scannedSerial">Upload Scanned Serial</a></h4>
 
 </div>
 <!-- /container -->

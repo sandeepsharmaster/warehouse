@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.warehouse.auth.model.FileBucket;
 import com.warehouse.auth.model.InvardShipment;
 import com.warehouse.auth.model.User;
 import com.warehouse.auth.service.SecurityService;
@@ -28,6 +29,9 @@ public class UserController {
     
     @Autowired
     private ShipmentService shipmentService;
+    
+    
+   
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {

@@ -32,23 +32,40 @@
 
 		<div class="form-container">
 		
-		<form:form method="POST" action="${contextPath}/scannedSerial" enctype="multipart/form-data">
+		<h1>File Upload </h1>
+			<form:form method="POST" modelAttribute="fileBucket" enctype="multipart/form-data" class="form-horizontal">
+
+				<div class="row">
+					<div class="form-group col-md-12">
+						<label class="col-md-3 control-lable" for="file">Upload a file </label>
+						<div class="col-md-7">
+							<form:input type="file" path="file" id="file" class="form-control input-sm" />
+							<div class="has-error">
+								<form:errors path="file" class="help-inline" />
+							</div>
+							<div class="row">
+								<div class="form-actions floatRight">
+									<input type="submit" value="Upload" class="btn btn-primary btn-sm">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button> -->
+			</form:form>
 			
-			<table>
-				<tr>
-					<td>Select a file to upload</td>
-					<td><input type="file" name="file"  id="file" /></td>
-				</tr>
-				<tr>
-					<td><input type="submit" value="Submit" /></td>
-				</tr>
-			</table>
-			
-		</form:form>
-		
-			
-			
-    
+	 <form:form method="POST" modelAttribute="fileBucket" class="form-signin">
+        <h1 class="form-signin-heading">Initiate Upload from local directory</h1>
+        <spring:bind path="fileName">
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:input type="text" path="fileName" class="form-control" placeholder="fileName"  autofocus="true"></form:input>
+                <form:errors path="fileName"></form:errors>
+            </div>
+        </spring:bind> 
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+    </form:form>
     	
 
 			<h4 class="text-center">

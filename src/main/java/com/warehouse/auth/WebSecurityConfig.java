@@ -40,24 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
     
-    @Bean(name="multipartResolver") 
-    public CommonsMultipartResolver getResolver() throws IOException{
-        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
-         
-        //Set the maximum allowed size (in bytes) for each individual file.
-        resolver.setMaxUploadSizePerFile(5242880);//5MB
-         
-        //You may also set other available properties.
-         
-        return resolver;
-    }
-    
-    @Bean
-    JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
-        JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(entityManagerFactory);
-        return transactionManager;
-    }
+  
     
     @Bean
     LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, Environment env) {
@@ -92,6 +75,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         entityManagerFactoryBean.setJpaProperties(jpaProperties);
  
         return entityManagerFactoryBean;
+    }
+    
+    @Bean(name="multipartResolver") 
+    public CommonsMultipartResolver getResolver() throws IOException{
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+         
+        //Set the maximum allowed size (in bytes) for each individual file.
+        resolver.setMaxUploadSizePerFile(5242880);//5MB
+         
+        //You may also set other available properties.
+         
+        return resolver;
+    }
+    
+    @Bean
+    JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory);
+        return transactionManager;
     }
 
     @Bean

@@ -42,7 +42,7 @@ public class FileUploadController {
         //model.addAttribute("fileBucket", new FileBucket());
         System.out.println("Method Called : uploadScanndedSerialNO");
 
-        return "fileUploadForm";
+        return "scannedSerial";
     }
     
     /**
@@ -83,7 +83,7 @@ public class FileUploadController {
 	}*/
  
  
-    @RequestMapping(value = "/scannedSerial", method = RequestMethod.POST)
+  /*  @RequestMapping(value = "/scannedSerial", method = RequestMethod.POST)
     public String submit(@RequestParam("file") final MultipartFile file, final ModelMap modelMap) {
 
     	System.out.println(" file uploaded");
@@ -93,15 +93,15 @@ public class FileUploadController {
         System.out.println(" file uploaded" + file.getSize());
        // System.out.println(" file uploaded" + file.getBytes());
         return "fileUploadView";
-    }
- /* @RequestMapping(value="/scannedSerial", method = RequestMethod.POST)
+    }*/
+  @RequestMapping(value="/scannedSerial", method = RequestMethod.POST)
     public String singleFileUpload(@Valid FileBucket fileBucket, BindingResult result, ModelMap model) throws IOException {
  
         if (result.hasErrors()) {
             System.out.println("validation errors");
-            return "singleFileUploader";
+            return "scannedSerial";
         } else if(fileBucket.getFileName() != null && !"".equals(fileBucket.getFileName())) {
-        	return "success";
+        	return "welcome";
         } else {            
             System.out.println("Fetching file");
             MultipartFile multipartFile = fileBucket.getFile();
@@ -116,5 +116,5 @@ public class FileUploadController {
             //model.addAttribute("fileName", fileName);
             return "success";
         }
-    }  */   
+    }  
 }
